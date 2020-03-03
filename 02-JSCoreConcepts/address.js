@@ -7,6 +7,8 @@ zip = '30-781';
 country = 'Poland';
 
 
+console.log();
+
 /* 
 dr Mateusz Kubicki
 ul. Długa 15
