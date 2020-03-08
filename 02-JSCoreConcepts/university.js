@@ -8,7 +8,7 @@ class Students {
     // names (array) which starts with the letter
     startWith(letter){ 
         let arr = new Array();
-        for(let i=0; i<this.names.length(); i++){
+        for(let i=0; i<this.names.length; i++){
             if(this.names[i].startWith(letter)){
                 arr.push(this.names[i]);
             }
