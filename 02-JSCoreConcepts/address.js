@@ -7,7 +7,15 @@ zip = '30-781';
 country = 'Poland';
 
 
-console.log();
+console.log(title + " " + name + " " + surname);
+    console.log("ul. " + street);
+    console.log(zip + " " + city);
+    console.log(country);
+    console.log();
+    console.log(`${title} ${name} ${surname}`);
+    console.log(`ul. ${street}`);
+    console.log(`${zip} ${city}`);
+    console.log(`${country}`);
 
 /* 
 dr Mateusz Kubicki
