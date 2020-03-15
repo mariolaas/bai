@@ -33,7 +33,7 @@
 					var currentTime = new Date();
 					var timeDiff = currentTime.getTime()-startTime.getTime();
 					timeDiff = Math.floor(timeDiff/1000);
-			    	var showTime = (timeDiff<10)?'0:0':'0:';
+			    		var showTime = (timeDiff<10)?'0:0':'0:';
 					document.getElementById('timer').innerHTML= showTime+timeDiff;
 				}
 
