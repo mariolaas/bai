@@ -5,9 +5,54 @@
 		<meta charset="UTF-8">
 	</head>
 	<body>
+		
 		<script>
-			// a JavaScript code here ...
-			
+			function createTable() {
+				
+				let tbl = document.createElement("table");
+				let tblBody = document.createElement("tbody");
+				tbl.style.border = "1px solid black";
+				tbl.style.borderCollapse = "collapse";
+				tbl.style.width = "200px";
+				tbl.style.textAlign = "center"
+
+
+				let row1 = document.createElement("tr");
+				let row2 = document.createElement("tr");
+
+				let cell1 = document.createElement("td");
+				cell1.innerText = "1";
+				cell1.style.border = "1px solid black";
+
+				let cell2 = document.createElement("td");
+				cell2.innerText = "2";
+				cell2.style.border = "1px solid black";
+
+				let cell3 = document.createElement("td");
+				cell3.innerText = "3";
+				cell3.style.border = "1px solid black";
+
+				let cell4 = document.createElement("td");
+				cell4.innerText = "4";
+				cell4.style.border = "1px solid black";
+				
+
+				row1.appendChild(cell1);
+				row1.appendChild(cell2);
+				row2.appendChild(cell3);
+				row2.appendChild(cell4);
+
+				tblBody.appendChild(row1);
+				tblBody.appendChild(row2);
+
+				tbl.appendChild(tblBody);
+
+				document.body.appendChild(tbl);
+
+
+				}
+
+				createTable();
 		</script>
 	</body>
 </html>
