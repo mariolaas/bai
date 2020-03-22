@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ready to use framework</title>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css"/>
+    </head>
+	<body>
+		<h1>Personal Data - DataTables</h1>
+        
+        <table id="myTable" class="display">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Age</th>
+                    <th>Country</th>
+                    <th>E-mail</th>
+                </tr>
+            </thead>
+        </table>
+    
+    
+		<script>
+
+            $(document).ready(function () {
+                $('.display').DataTable( {
+
+                    'ajax':{
+                        'url': 'https://gist.githubusercontent.com/mariolaas/4f60434621b3f4f82421f400eca50328/raw/a213859666e12ac07ac8927649f4ee7488d13eef/people.json',
+                        'dataSrc': ''
+                    },
+                    "columns": [
+                       {"data": "name"},
+                       {"data": "surname"},
+                       {"data": "age"},
+                       {"data": "country"},
+                       {"data": "email"}
+                    ]
+                })
+            });
+
+            
+        </script>
+        
+    </body>
+</html>  

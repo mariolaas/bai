@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Currency Exchange Rates</title>
+		<meta charset="UTF-8">
+    </head>
+    
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 400;
+            border: 0;
+        }
+
+        tr, td {
+            border: 1px solid black;
+            text-align: center;
+            width: 175px;
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 5px; 
+            font-weight: bold;
+        }
+
+        .style{
+            font-family: Arial, sans-serif; 
+            border-style: solid; 
+            border-collapse: collapse; 
+            border-color: #000000; 
+            border-width: 1px; 
+            background-color: #00695f; 
+            color: #FFFFFF; 
+            vertical-align: middle; 
+            text-align: center; 
+            padding: 5px; 
+            font-weight: bold;
+
+        }
+    </style>
+
+	<body onload="connect()">
+        <h1>Exchange Rates</h1>
+        <table cellpadding="0" cellspacing="0">
+            <col width="130" />
+            <col width="80" />
+            <col width="80" />
+            <col width="80" />
+            <tr>  
+               <th rowspan="2" class="style"><b>Currency</b></th>
+               <th rowspan="2" class="style"><b>Code</b></th>
+               <th colspan="2" class="style"><b>Prices:</b></th>
+            </tr>  
+            <tr>
+               <th class="style"><b>Buy</b></th>
+               <th class="style"><b>Sell</b></th>
+            </tr>  
+
+            <tr>
+               <td id="currencyUSD"></td>
+               <td id="codeUSD"></td>
+               <td id="buyUSD"></td>
+               <td id="sellUSD"></td>
+            </tr>  
+
+            
+            <tr>
+               <td id="currencyEUR"></td>
+               <td id="codeEUR"></td>
+               <td id="buyEUR"></td>
+               <td id="sellEUR"></td>
+            </tr>  
+
+            
+            <tr>
+               <td id="currencyGBP"></td>
+               <td id="codeGBP"></td>
+               <td id="buyGBP"></td>
+               <td id="sellGBP"></td>
+            </tr>  
+
+
+         </table>
+		
+		<script>
+			
+            function connect(){
+
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function(){display(this);};
+                xhr.open("GET", "http://api.nbp.pl/api/exchangerates/tables/c/");
+                xhr.send();
+
+            }
+
+                function display(r){
+
+                if(r.readyState == 4 && r.status == 200){
+                    var table = JSON.parse(r.responseText);
+
+                    console.log(table);
+                    
+                    //USD
+                    document.getElementById("currencyUSD").innerHTML = table[0].rates[0].currency;
+                    document.getElementById("codeUSD").innerHTML = table[0].rates[0].code;
+                    document.getElementById("buyUSD").innerHTML = table[0].rates[0].bid;
+                    document.getElementById("sellUSD").innerHTML = table[0].rates[0].ask;
+                    
+                    //EUR
+                    document.getElementById("currencyEUR").innerHTML = table[0].rates[3].currency;
+                    document.getElementById("codeEUR").innerHTML = table[0].rates[3].code;
+                    document.getElementById("buyEUR").innerHTML = table[0].rates[3].bid;
+                    document.getElementById("sellEUR").innerHTML = table[0].rates[3].ask;
+                    
+                    //GBP
+                    document.getElementById("currencyGBP").innerHTML = table[0].rates[6].currency;
+                    document.getElementById("codeGBP").innerHTML = table[0].rates[6].code;
+                    document.getElementById("buyGBP").innerHTML = table[0].rates[6].bid;
+                    document.getElementById("sellGBP").innerHTML = table[0].rates[6].ask;
+                    
+                }
+
+            }
+		</script>
+
+	</body>
+</html>

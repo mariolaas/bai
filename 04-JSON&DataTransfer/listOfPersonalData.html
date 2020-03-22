@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>List of personal data</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Personal data</h1>
+        <input type="button" value="Display list of people" onclick="connect()">
+        <ol id="personID"></ol>
+		
+		<script>
+
+            function connect(){
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){display(this);};
+            xhr.open("GET", "https://gist.githubusercontent.com/mariolaas/4f60434621b3f4f82421f400eca50328/raw/a213859666e12ac07ac8927649f4ee7488d13eef/people.json");
+            xhr.send();
+
+            }
+
+            function display(r){
+
+                if(r.readyState == 4 && r.status == 200){
+                    var peopleList = JSON.parse(r.responseText);
+                    for (let person of peopleList){
+                            let li = document.createElement("li");
+                            li.innerText = `${person.name} ${person.surname.toUpperCase()}, ${person.country}`;
+                            document.getElementById("personID").appendChild(li);
+                        }
+                    }
+                };
+
+		</script>
+
+	</body>
+</html>

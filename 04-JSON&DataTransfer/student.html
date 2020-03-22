@@ -7,10 +7,28 @@
 	<body>
 		<h1>Student</h1>
 		<p>Open a console and then click the button</p>
-		<input type="button" value="Display student's data">
+		<input type="button" value="Display student's data" onclick="connect()">
 		<p id="personalData"></p>
 
 		<script>
+
+			function connect(){
+
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function(){display(this);};
+				xhr.open("GET", "https://gist.githubusercontent.com/mariolaas/9e4fe03b29430280685be9c440fb053e/raw/9b9ee0b27997e14322b214465f6186226dc03df3/personalData.json" ); 
+				xhr.send();
+
+			}
+
+			function display(r){
+
+				if(r.readyState == 4 && r.status == 200){
+					var object = JSON.parse(r.responseText);
+					document.getElementById("personalData").innerText = `My name is: ${object.name} ${object.surname}`;
+				}
+
+			}
 
 		</script>
 
