@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+  <h2>Ordered Todo List</h2>
+  <div id="app">
+    <ol>
+      <li v-for="item in orderedList">{{item}}</li>
+    </ol>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+        data: {
+            todo: [
+            'Purchase two tickets to cinema',
+            'Feed cat',
+            'Pay cable bill',
+            'Go shopping'
+        ]
+    },
+
+    computed: {
+        orderedList: function () {
+            return this.todo.sort();
+        }
+    }
+
+    });
+  </script>
+
+</body>
+</html>

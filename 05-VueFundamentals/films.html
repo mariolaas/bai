@@ -4,6 +4,51 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+
+  <style>
+
+    table {
+      font-family: 'Open Sans', sans-serif;
+      width: 750px;
+      border: 1px solid black;
+      margin: 10px 10px 0 10px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+
+      border: 0.5px solid black;
+      border-collapse: collapse;
+      padding: 4px;
+      text-align: left;
+    }
+        
+  </style>
+
+  <h2 style="text-align: center;">Films</h2>
+  <div id="app">
+
+    <table id="firstTable" style="margin:auto; padding: 20px;">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Year</th>
+          <th>Director</th>
+          <th>Budget</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="film in films">
+          <td>{{film.title}}</td>
+          <td>{{film.year}}</td>
+          <td>{{film.director}}</td>
+          <td>${{film.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
   <script>
     var app = new Vue({
       el: '#app',
@@ -35,8 +80,8 @@
           }
         ] 
         }
-      }
-    });
+
+      });
   </script>
 </body>
 </html>
