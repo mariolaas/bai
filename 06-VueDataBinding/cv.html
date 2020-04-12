@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+    body{
+        margin-left: 10px;
+        text-align: left;
+    }
+    button {
+        margin-top: 10px;
+        width: 120px;
+    }
+</style>
+<body>
+  <h1>CV</h1>
+  <div id="cv">
+    <p><b>Imię:</b> {{name}}</p>
+    <input type="text" v-model="name"><br>
+    <p><b>Nazwisko:</b>{{surname}}</p>
+    <input type="text" v-model="surname"><br>
+    <p><b>Wiek:</b> {{age}}</p>
+    <input type="number" v-model="age"><br>
+    <p><b>Płeć:</b> {{gender}}</p>
+    <input type="radio" id="female" value="kobieta" v-model="gender">
+    <label for="male">kobieta</label>
+    <input type="radio" id="male" value="mężczyzna" v-model="gender">
+    <label for="male">mężczyzna</label><br>
+    <p><b>Wykształcenie:</b> {{educationLevel}}</p>
+    <select v-model="educationLevel">
+        <option disabled value="">Wybierz swoje wykształcenie:</option>
+        <option>Brak</option>
+        <option>Podstawowe</option>
+        <option>Średnie</option>
+        <option>Wyższe</option>
+      </select><br>
+    <p><b>Umiejętności:</b> <span v-for="skill in skills" :key="skill.id"> {{ skill }},</span></p>
+        <input type="checkbox" id="obsługa komputera" value="obsługa komputera" v-model="skills">
+        <label for="obsługa komputera">obsługa komputera</label><br>
+        <input type="checkbox" id="prawo jazdy" value="prawo jazdy" v-model="skills">
+        <label for="prawo jazdy">prawo jazdy</label><br>
+        <input type="checkbox" id="kreatywność" value="kreatywność" v-model="skills">
+        <label for="kreatywność">kreatywność</label><br>
+        <input type="checkbox" id="praca w zespole" value="praca w zespole" v-model="skills">
+        <label for="praca w zespole">praca w zespole</label><br>
+        <br>
+        <button @click="saveCV()">Zapisz</button>
+        <button @click="readCV()">Czytaj</button>
+    </div>
+    
+    <script>
+    var cv = new Vue({
+      el: '#cv',
+      data: {
+        name: "",
+        surname: "",
+        age: "",
+        gender: "",
+        educationLevel: "",
+        skills: []
+    },
+    computed: {
+        roundAge: function() {
+            return Math.floor(this.age);
+          }
+    },
+    methods: {
+        saveCV: function() {
+            const person = {
+              name: this.name,
+              surname: this.surname,
+              age: this.age,
+              gender: this.gender,
+              educationLevel: this.educationLevel,
+              skills: this.skills
+            };
+
+            localStorage.setItem("person", JSON.stringify(person));
+        },
+        readCV: function() {
+            const data = JSON.parse(localStorage.getItem("person"));
+            this.name = data.name;
+            this.surname = data.surname;
+            this.age = data.age;
+            this.gender = data.gender;
+            this.educationLevel = data.educationLevel;
+            this.skills = data.skills;
+          }
+        }
+    });
+  </script>
+
+</body>
+</html>

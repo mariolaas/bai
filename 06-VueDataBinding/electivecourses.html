@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+  span {
+        display: inline-block;
+        width: 60px;
+        text-align: left;
+    }
+</style>
+<body>
+  <h1>Przedmioty do wyboru</h1>
+  <div id="courses">
+    <input type="checkbox" id= "mihe" value= "Marketing i handel elektroniczny" v-model="courses"> 
+    <label for="mihe">Marketing i handel elektroniczny</label>
+    <br>
+    <input type="checkbox" id= "misk" value= "Modelowanie i symulacja komputerowa" v-model="courses"> 
+    <label for="misk">Modelowanie i symulacja komputerowa</label>
+    <br>
+    <input type="checkbox" id= "bai" value= "Bogate aplikacje internetowe" v-model="courses"> 
+    <label for="bai">Bogate aplikacje internetowe</label>
+    <br>
+    <input type="checkbox" id= "pk" value= "Programowanie kreatywne" v-model="courses"> 
+    <label for="pk">Programowanie kreatywne</label>
+    <br>
+    <input type="checkbox" id= "mop" value= "Metody optymalizacji procesów" v-model="courses"> 
+    <label for="mop">Metody optymalizacji procesów</label>
+    <br>
+    <p>Ilość wybranych przedmiotów: {{courses.length}}</p>
+  </div>
+  <script>
+    var courses = new Vue({
+      el: '#courses',
+      data: {
+        courses: []
+        }
+    });
+  </script>
+
+</body>
+</html>

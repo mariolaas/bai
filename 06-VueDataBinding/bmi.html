@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+<style>
+  span {
+        display: inline-block;
+        width: 60px;
+        text-align: left;
+    }
+</style>
 <body>
   <h1>Body Mass Index</h1>
-  <div id="app">
+  <div id="bmi">
     <span>Waga: </span>
-    <input> kg<br>
+    <input type="number" v-model="weight"> kg<br>
     <span>Wzrost: </span>
-    <input> cm
-    <p>Wskaźnik BMI:</p>
+    <input type="number" v-model="height"> cm
+    <p>Wskaźnik BMI: {{ calculateBMI }}</p>
   </div>
   <script>
-    var app = new Vue({
-      el: '#app',
+    var bmi = new Vue({
+      el: '#bmi',
       data: {
+        weight: 0,
+        height: 0
+      },
+      computed: {
+
+        calculateBMI: function(){
+          if (this.weight !== 0 && this.height !== 0) {
+            return (this.weight / (Math.pow(this.height / 100, 2))).toFixed(2)
+          }
+        }
       }
     });
   </script>
