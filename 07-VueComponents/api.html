@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Buy and sell prices of foreign currencies - API</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+    table,
+    th,
+    td
+    {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 4px;
+        width: 50%;
+        table-layout: fixed;
+    }
+    .left {
+        text-align: left;
+        margin: 25px auto 0 auto;
+    }
+    .style{
+        font-family: Arial, sans-serif; 
+        border-style: solid; 
+        border-collapse: collapse; 
+        border-color: #000000; 
+        border-width: 1px; 
+        background-color: #00695f; 
+        color: #FFFFFF; 
+        vertical-align: middle; 
+        text-align: center; 
+        padding: 5px; 
+    }
+</style>
+<body>
+    <h1 style="text-align: center;">Kursy kupna i sprzedaży walut obcych</h1>
+    <div id="currency">
+        <currency></currency>
+    </div>
+  <script>
+    Vue.component('currency', {
+        template:
+          `<div>
+            <table cellpadding="0" cellspacing="0" class="left">
+            <col width="130" />
+            <col width="80" />
+            <col width="80" />
+            <col width="80" />
+            <tr>  
+               <th rowspan="2" class="style"><b>Nazwa waluty</b></th>
+               <th rowspan="2" class="style"><b>Kod waluty</b></th>
+               <th colspan="2" class="style"><b>Kurs:</b></th>
+            </tr>  
+            <tr>
+               <th class="style"><b>kupna</b></th>
+               <th class="style"><b>sprzedaży</b></th>
+            </tr>
+                <tbody>
+                    <tr v-for="currency in currencies">
+                        <td>{{currency.currency}}</td>
+                        <td style="text-align:right;">{{currency.code}}</td>
+                        <td style="text-align:right;">{{currency.bid}}</td>
+                        <td style="text-align:right;">{{currency.ask}}</td>
+                     </tr> 
+                </tbody>
+            </table> 
+          </div>`,
+        data(){
+            return{
+                currencies: [],
+            }
+        },
+        mounted(){
+            this.showExchangeRates()
+        },
+
+        methods: {
+            showExchangeRates: function(){
+                var xhr = new XMLHttpRequest();
+                var method = 'GET';
+                var URL = `http://api.nbp.pl/api/exchangerates/tables/c`
+                
+                var data = [];
+                
+                    xhr.onreadystatechange = function(){
+                        if(this.readyState == 4 && this.status == 200){
+                            const parse = JSON.parse(xhr.responseText)
+                            console.log(parse)
+                            let rates = parse[0].rates
+                            for(let i = 0; i<rates.length; i++){
+                                Vue.set(data, i, rates[i])
+                            }
+			            }
+			        };
+			        xhr.open(method, URL);
+                    xhr.send();
+                    this.currencies = data;
+            }
+        },
+    });
+
+    new Vue({
+        el: '#currency',
+    });   
+  </script>
+</body>
+</html>

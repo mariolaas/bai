@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Movie genres chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+</head>
+<body>
+    <h2 style="text-align:center;">The popularity of films genres</h2>  
+    <div id="display-data">
+        <chart :data="popularity" :labels="filmsGenres"></chart>
+    </div>
+    <script>
+    Vue.component('chart', {
+    
+        template:
+        `<div>
+            <canvas id="myChart" width="300" height="100%"></canvas>
+        </div>`,
+        
+        props: {
+            data: {
+                type: Array,
+            },
+            labels: {
+                type: Array
+            }
+        },
+
+        mounted() {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                
+            type: 'pie',    
+                data: {
+                    labels: this.labels,
+                    datasets: [
+                        {
+                            backgroundColor: [
+                                'rgba(236, 230, 210, 1)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(190, 215, 209, 1)',
+                                'rgba(247, 235, 195, 1)',
+                                'rgba(251, 214, 198, 1)',
+                                'rgba(248, 225, 231, 1)',
+                                'rgba(242, 203, 187, 1)'
+                                ],
+                            borderColor: [
+                                'rgba(236, 230, 210, 1)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(190, 215, 209, 1)',
+                                'rgba(247, 235, 195, 1)',
+                                'rgba(251, 214, 198, 1)',
+                                'rgba(248, 225, 231, 1)',
+                                'rgba(242, 203, 187, 1)'
+                                ],
+                            data: this.data,
+                        }
+                    ]
+                }
+            });
+        }
+    });
+        
+    new Vue({
+        el: '#display-data',
+        data:{
+            filmsGenres: ['Horror', 'Romantic', 'Comedy', 'Thriller', 'Action', 'Adventure', 'Other'],
+            popularity: [17, 16, 27, 14, 11, 10, 5]
+        }
+    });   
+    </script>
+</body>
+</html>

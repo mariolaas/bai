@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Architektura von Neumanna</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+  <div id="architecture">
+    <architecture></architecture>
+  </div>
+
+  <script>
+    Vue.component('architecture', {
+        data() {
+            return {
+                items: [
+                    'Pamięć komputerowa',
+                    'Jednotka sterująca',
+                    'Jednostka arytmetyczno-logiczna',
+                    'Urządzenia wejścia/wyjścia'
+            ]
+        }
+    },
+        template: 
+        `<div>
+            <h2>Architektura von Neumanna</h2>
+            <ul>
+                <li v-for="item in items">{{item}}</li>
+            </ul>
+        </div>`
+    });
+
+    new Vue({
+        el: '#architecture'
+      });
+  </script>
+</body>
+</html>

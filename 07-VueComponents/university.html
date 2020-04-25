@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>University</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+  <!--
+  <h1>Cracow University of Economics</h1>
+  <p>31-510 Kraków, Rakowicka 27, POLAND</p>
+  -->
+
+  <div id="display-data">
+    <university-data></university-data>
+  </div>
+  <script>
+
+      Vue.component('university-data', {
+          template: '<div><h1>Cracow University of Economics</h1><p>31-510 Kraków, Rakowicka 27, POLAND</p></div>',
+      });
+
+      new Vue({
+        el: '#display-data'
+      });
+    
+  </script>
+</body>
+</html>
